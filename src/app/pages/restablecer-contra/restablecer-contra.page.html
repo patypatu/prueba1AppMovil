@@ -9,9 +9,14 @@
 
 
 <ion-content>
-    <h1>Restablecer Contraseña</h1>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="3">
+    <ion-row>
+      <ion-item>
+        <ion-label>Usuario: </ion-label>
+        <ion-input placeholder="Ingrese Usuario"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row class="ion-justify-content-start">
+      <ion-col size="auto">
         <ion-button color="primary" [routerLink]="['/ingreso']">Recuperar</ion-button>
       </ion-col>
     </ion-row>
