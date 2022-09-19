@@ -21,12 +21,12 @@
       <ion-input placeholder="Ingrese Contraseña" type="password"></ion-input>
     </ion-item>
   </div>
-  <ion-row class="ion-justify-content-center">
-    <ion-col size="6">
+  <ion-row class="ion-justify-content-center"> <!-- class="ion-justify-content-start" class="ion-justify-content-center" > -->
+    <ion-col size="12" size-md="6" push-md="6" >
       <ion-button color="primary" [routerLink]="['/home']">Ingresar</ion-button>
     </ion-col>
-    <ion-col size="6">
-      <ion-button fill="clear" color="danger" [routerLink]="['/restablecer-contra']">Restablecer</ion-button>
+    <ion-col size="12" size-md="6" pull-md="6">
+      <ion-button size="small" fill="clear" color="danger" [routerLink]="['/restablecer-contra']">¿Has olvidado tu contraseña?</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>
