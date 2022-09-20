@@ -3,25 +3,25 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Inicio</ion-title>
+    <ion-icon slot="start" name="home" color="primary"></ion-icon>
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
-  
-<ion-row class="ion-justify-content-start">
-  <ion-col size="auto">
-    <div></div>
-  </ion-col>
-  <ion-col size="auto">
-    <div>
-      <h1>Hola {{usuario}} Bienvenido!</h1>
-    </div>
-  </ion-col>
-  <ion-col size="auto">
-    <div></div>
-  </ion-col>
-</ion-row>
+
+  <ion-card >
+    <img src="assets/banner small.png" /> 
+  </ion-card>
+
+  <ion-item>
+    <ion-label>
+      Usuario: {{usuario}}  
+    </ion-label>
+    <ion-icon name="person-circle" size="large" slot="end"></ion-icon>
+  </ion-item>
+
+
     
 </ion-content>
