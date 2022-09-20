@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'restablecer-contra',
     loadChildren: () => import('./pages/restablecer-contra/restablecer-contra.module').then( m => m.RestablecerContraPageModule)
+  },
+  {
+    path: 'registro-asistencia',
+    loadChildren: () => import('./pages/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
   }
 ];
 
