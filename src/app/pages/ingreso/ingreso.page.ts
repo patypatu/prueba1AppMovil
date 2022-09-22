@@ -7,16 +7,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./ingreso.page.scss'],
 })
 export class IngresoPage implements OnInit {
-
   name: string;
-  
+  tituloPagina = 'Ingreso Usuario';
+  iconoEncabezado = 'enter';
 
   constructor(private router: Router) {}
 
   ngOnInit() {
   }
 
-  goToHomeParams():void{
-    this.router.navigate(['/home',this.name]) 
+  goToHomeParams(): void{
+    this.router.navigate(['/home',this.name]);
   }
 }

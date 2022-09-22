@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestablecerContraPage implements OnInit {
 
+  tituloPagina = 'Restablecer Contraseña';
+  iconoEncabezado = 'build';
+
   constructor() { }
 
   ngOnInit() {
