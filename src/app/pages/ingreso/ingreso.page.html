@@ -12,13 +12,13 @@
 <ion-content>
   <div>
     <ion-item>
-      <ion-label>Usuario: </ion-label>
+      <ion-label position="floating">Usuario </ion-label>
       <ion-input [(ngModel)]="name"  placeholder="Ingrese Usuario"></ion-input>
     </ion-item>
   </div>
   <div>
     <ion-item>
-      <ion-label>Contraseña: </ion-label>
+      <ion-label position="floating">Contraseña </ion-label>
       <ion-input placeholder="Ingrese Contraseña" type="password"></ion-input>
     </ion-item>
   </div>
@@ -29,7 +29,7 @@
     </ion-col>
     <ion-col size="auto" size-md="6" push-md="6">
       <div>
-        <ion-button (click)="goToHomeParams()" color="myColor" [routerLink]="['/home']">Ingresar</ion-button>
+        <ion-button (click)="goToHomeParams()" color="myColor">Ingresar</ion-button>
       </div>
     </ion-col>
     <ion-col><div></div></ion-col>
