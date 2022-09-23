@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class IngresoPage implements OnInit {
   name: string;
+  pass: string;
   tituloPagina = 'Ingreso Usuario';
   iconoEncabezado = 'enter';
 
