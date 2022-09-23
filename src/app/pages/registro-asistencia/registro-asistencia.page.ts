@@ -9,14 +9,10 @@ import { createAnimation } from '@ionic/angular';
 })
 export class RegistroAsistenciaPage implements OnInit {
 
-  constructor(private animationCtrl: AnimationController) {
-    const squareA = createAnimation()
-  .addElement(document.querySelector('.square-a'))
-  .keyframes([
-    { offset: 0, transform: 'scale(1) rotate(0)' },
-    { offset: 0.5, transform: 'scale(1.2) rotate(45deg)' },
-    { offset: 1, transform: 'scale(1) rotate(0) '}
-  ]);
+  tituloPagina = 'Restablecer Contraseña';
+  iconoEncabezado = 'build';
+
+  constructor() {
    }
 
   ngOnInit() {

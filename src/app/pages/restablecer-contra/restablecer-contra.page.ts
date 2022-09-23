@@ -6,9 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./restablecer-contra.page.scss'],
 })
 export class RestablecerContraPage implements OnInit {
+  restablecer: string;
 
-  tituloPagina = 'Restablecer Contraseña';
-  iconoEncabezado = 'build';
+  tituloPagina = 'Registro Asistencia';
+  iconoEncabezado = 'book';
 
   constructor() { }
 
