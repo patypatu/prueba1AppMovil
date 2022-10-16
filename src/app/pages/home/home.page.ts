@@ -15,8 +15,8 @@ export class HomePage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.name = this.activatedRoute.snapshot.paramMap.get('name');
-    //console.log(this.name);
+    this.name = localStorage.getItem('Name');       //  <---- Con esta linea, podemos obtener el nombre de usuario desde cualquier modulo.
+
   }
 
 }

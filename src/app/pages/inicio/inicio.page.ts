@@ -25,7 +25,7 @@ export class InicioPage implements OnInit {
     //Se esta habilitando el menu, la idea es que el menu vuelva a estar habilitado cuando se salga de la pagina de login
     //cuando exista logica de validacion del login solo debe habilitarse si las credenciales estan ok
     //otra opcion es mover la habilitacion del menu a otra vista con la misma funcion ionViewWillEnter (seria el home post login)
-    window.localStorage.setItem('Name',this.name);
+    localStorage.setItem('Name',this.name);
     this.menuCtrl.enable(true);
     this.router.navigate(['/home',this.name]);
 
