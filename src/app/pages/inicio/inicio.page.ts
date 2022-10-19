@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, AlertController } from '@ionic/angular';
 import { AppComponent } from '../../app.component';
 import { LoginServiceService } from 'src/app/services/login-service.service';
 
@@ -16,12 +16,13 @@ export class InicioPage implements OnInit {
   tituloPagina = 'Ingreso Usuario';
   iconoEncabezado = 'enter';
 
-  constructor(private router: Router, private menuCtrl: MenuController, private loginService: LoginServiceService) { }
+  constructor(private router: Router, private menuCtrl: MenuController, private loginService: LoginServiceService,
+     private alertController: AlertController) { }
 
   ngOnInit() {
   }
 
-  goToHomeParams(): void{
+  async goToHomeParams(){
     const respLogin = this.loginService.login(this.name,this.pass); //service login
     console.log('respLogin: '+ respLogin);
 
@@ -35,7 +36,16 @@ export class InicioPage implements OnInit {
     if(respLogin === true){
       this.router.navigate(['/home']);
     }else{
-      alert(`Usuario o Contraseña incorrectos`);
+      //alert(`Usuario o Contraseña incorrectos`);
+
+      const alert = await this.alertController.create({
+        header: 'Error',
+        //subHeader: 'Important message',
+        message: 'Usuario o Contraseña incorrectos',
+        buttons: ['OK'],
+      });
+
+      await alert.present();
     }
   }
 
