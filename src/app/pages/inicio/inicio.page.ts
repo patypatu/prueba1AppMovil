@@ -23,10 +23,10 @@ export class InicioPage implements OnInit {
   }
 
   async goToHomeParams(){
-    const respLogin = this.loginService.login(this.name,this.pass); //service login
+    const respLogin = await this.loginService.login(this.name,this.pass).then(a=>true).catch(e=>false); //service login
     console.log('respLogin: '+ respLogin);
 
-    localStorage.setItem('Name',this.name);   // <-- La idea es que antes de esto, se compruebe con la BD si user & pass corresponden
+    
 
     //Se esta habilitando el menu, la idea es que el menu vuelva a estar habilitado cuando se salga de la pagina de login
     //cuando exista logica de validacion del login solo debe habilitarse si las credenciales estan ok

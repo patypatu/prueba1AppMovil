@@ -17,16 +17,31 @@ def login_profe(request):
  
     username = data['username']
     password = data['password']
+
+    mensajeToken = {
+        'mensaje' : '',
+        'token' : ''
+    }
+
     try:
         user = User.objects.get(username=username)
     except User.DoesNotExist:
-        return Response("El usuario no existe")
+        mensajeToken['mensaje'] = "Usuario incorrecto"
+        return Response(mensajeToken,status=status.HTTP_404_NOT_FOUND)
+
     pass_valido = check_password(password, user.password)
     if not pass_valido:
-        return Response("Contraseña Incorrecta")
+        mensajeToken['mensaje'] = "Contraseña incorrecta"
+        return Response(mensajeToken,status=status.HTTP_401_UNAUTHORIZED)
  
     token, created = Token.objects.get_or_create(user=user)
-    return Response(token.key)
+
+    #print(token.key)
+    mensajeToken['mensaje'] = "Clave correcta"
+    mensajeToken['token'] = token.key
+    #mensajeToken['user'] = UserSerializer(user).data
+    return Response(mensajeToken,status=status.HTTP_200_OK)
+
 
 @api_view(['POST'])
 def login(request):
@@ -34,19 +49,31 @@ def login(request):
  
     username = data['username']
     password = data['password']
+
+    mensajeToken = {
+        'mensaje' : '',
+        'token' : ''
+    }
+
     try:
         user = User.objects.get(username=username)
     except User.DoesNotExist:
-        return Response("El usuario no existe")
-    #pass_valido = check_password(password, user.password)
+        mensajeToken['mensaje'] = "Usuario incorrecto"
+        return Response(mensajeToken,status=status.HTTP_404_NOT_FOUND)
+    
     if password == user.password:
         pass_valido = True
     else:
         pass_valido = False
-    #clave = password + user.password
+    
     if not pass_valido:
-       # return Response(clave)
-        return Response("Contraseña Incorrecta ")
+        mensajeToken['mensaje'] = "Contraseña incorrecta"
+        return Response(mensajeToken,status=status.HTTP_401_UNAUTHORIZED)
  
     token, created = Token.objects.get_or_create(user=user)
-    return Response(token.key)
+
+    #print(token.key)
+    mensajeToken['mensaje'] = "Clave correcta"
+    mensajeToken['token'] = token.key
+    #mensajeToken['user'] = UserSerializer(user).data
+    return Response(mensajeToken,status=status.HTTP_200_OK)
