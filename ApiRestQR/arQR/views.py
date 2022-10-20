@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 #from .models import User
 from .serializers import UserSerializer,User2Serializer
 # limitar acceso a la API
-#from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 #from django.contrib.auth.hashers import check_password
 #from rest_framework.authtoken.models import Token
 #para resguardar la api importamos lo siguiente
