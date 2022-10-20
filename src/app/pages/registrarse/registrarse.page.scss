@@ -1,0 +1,29 @@
+ion-toolbar{
+    --ion-background-color: transparent;
+    --opacity:0;
+}
+
+.inicio-btns{
+    margin-top: 25px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+login-btn{
+    --ion-color-primary:#215AB7;
+}
+
+.wrapform{
+    margin-top: 30px;
+}
+
+ion-button{
+    background: var(--ion-color-mycolor);
+    border-radius: 10px;
+    
+}
+
+.fondoBlanco{
+    background-color: white;
+
+}

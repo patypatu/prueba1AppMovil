@@ -1,35 +1,35 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Registrarse</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
+  <ion-img src="assets/images/header2.png"></ion-img>
+
+  
 
   <ion-card-content>
-    <form action="" >
-      <div>
+    <h1>Registrar Cuenta</h1>
+    <form action="" name="registroUsuario" >
+      
+      <div> 
         <ion-item>
           <ion-label position="floating">Rut </ion-label>
-          <ion-input name="rut"[(ngModel)]="rut" #nameInput="ngModel"  placeholder="Ingrese Rut" required></ion-input>
+          <ion-input name="rut" [(ngModel)]="rut"  #rutInput="ngModel" placeholder="Ingrese RUT" type="text" required></ion-input>
         </ion-item>
       </div>
-      <div>
+      <div> 
         <ion-item>
           <ion-label position="floating">Nombre </ion-label>
-          <ion-input name="nombre"[(ngModel)]="nombre" #nameInput="ngModel"  placeholder="Ingrese nombre" required></ion-input>
+          <ion-input name="nombre" [(ngModel)]="nombre"  #nombreInput="ngModel" placeholder="Ingrese Nombre" type="text" required></ion-input>
         </ion-item>
       </div>
-      <div>
+      <div> 
         <ion-item>
           <ion-label position="floating">Apellido </ion-label>
-          <ion-input name="apellido"[(ngModel)]="apellido" #nameInput="ngModel"  placeholder="Ingrese apellido" required></ion-input>
+          <ion-input name="apellido" [(ngModel)]="apellido"  #apellidoInput="ngModel" placeholder="Ingrese Apellido" type="text" required></ion-input>
         </ion-item>
       </div>
       <div>
         <ion-item>
           <ion-label position="floating">Correo </ion-label>
-          <ion-input name="correo"[(ngModel)]="correo" #nameInput="ngModel"  placeholder="Ingrese correo" required></ion-input>
+          <ion-input name="correo"[(ngModel)]="correo" #correoInput="ngModel"  placeholder="Ingrese correo" type="email" required></ion-input>
         </ion-item>
       </div>
       <div> 
@@ -38,21 +38,48 @@
           <ion-input name="pass" [(ngModel)]="pass"  #passInput="ngModel" placeholder="Ingrese Contraseña" type="password" required></ion-input>
         </ion-item>
       </div>
-      <ion-item>
-        <ion-label position="floating">Repita contraseña </ion-label>
-        <ion-input name="pass2" [(ngModel)]="pass2"  #passInput="ngModel" placeholder="repita Contraseña" type="password" required></ion-input>
-      </ion-item>
-    
+      <div> 
+        <ion-item>
+          <ion-label position="floating">Repita Contraseña </ion-label>
+          <ion-input name="pass2" [(ngModel)]="pass2"  #pass2Input="ngModel" placeholder="Repita Contraseña" type="password" required></ion-input>
+        </ion-item>
+      </div>
       
+  
       <ion-row class="ion-justify-content-center">
-        
+        <ion-col>
+          <div></div>
+        </ion-col>
         <ion-col>
           <div>
-            <ion-button name="registrar"(click)="goToHomeParams()" color="blue" [disabled]="nameInput.errors?.required || passInput.errors?.required">Registrar</ion-button>
+            
+            <ion-button (click)="registroUsuario()" name="ingresar" [routerLink]="['/inicio']" color="myColor" [disabled]="rutInput.errors?.required || 
+            nombreInput.errors?.required || apellidoInput.errors?.required || correoInput.errors?.required || passInput.errors?.required || 
+            pass2Input.errors?.required">Registrar</ion-button>
           </div>
         </ion-col>
-       
+        <ion-col>
+          <div></div>
+        </ion-col>
       </ion-row>
+
+      <ion-row class="ion-justify-content-center">
+        <ion-col>
+          <div></div>
+        </ion-col>
+        <ion-col >
+          <div>
+            <ion-button class="fondoBlanco" size="small" fill="clear" color="dark" [routerLink]="['/inicio']">Iniciar Sesión</ion-button>
+          </div>
+        </ion-col>
+        <ion-col >
+          <div></div>
+        </ion-col>
+      </ion-row>
+
     </form>
+
   </ion-card-content>
+
 </ion-content>
+
