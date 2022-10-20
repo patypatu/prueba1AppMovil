@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { RegistroUsuarioService } from '../../services/registro-usuario.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class RegistrarsePage implements OnInit {
   tituloPagina = 'Ingreso Usuario';
   iconoEncabezado = 'enter';
 
-  constructor(private router: Router, private registroUsuarioService: RegistroUsuarioService) { }
+  constructor(private router: Router, private registroUsuarioService: RegistroUsuarioService,
+    private alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -27,6 +29,16 @@ export class RegistrarsePage implements OnInit {
 
     const respResgistro = await this.registroUsuarioService.registrarUsuario(this.rut,this.nombre,
       this.apellido,this.correo,this.pass).then(a=>true).catch(e=>false);
+
+      const alert = await this.alertController.create({
+        header: 'Usuario Creado!',
+        //subHeader: 'Important message',
+        message: 'Se ha creado correctamente su usuario',
+        buttons: ['OK'],
+      });
+
+      await alert.present();
+
     console.log('respuesta:'+ respResgistro);
   }
 

@@ -41,7 +41,11 @@ const routes: Routes = [
     path: 'cerrar-sesion',
     component: CerrarSesionComponent
     //loadChildren: () => import('./components/folder.module').then( m => m.FolderPageModule)
+  },  {
+    path: 'detalle-usuario',
+    loadChildren: () => import('./pages/detalle-usuario/detalle-usuario.module').then( m => m.DetalleUsuarioPageModule)
   }
+
 
 
 ];

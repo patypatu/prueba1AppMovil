@@ -3,8 +3,21 @@
 
 </ion-header>
 
-<ion-content >
-  <div class="contenedor">
-    <img src="assets/icon/construccion header.jpg" alt="construccion duoc">
+<ion-content>
+  <div>
+    <img src="assets/icon/cabezera duoc.jpg" /> 
   </div>
+  
+  <ion-list *ngIf="listadoUsuarios">
+    <ion-item *ngFor='let lista of listadoUsuarios'>
+        <ion-avatar slot="start">
+            <img src="assets/icon/user.png" alt="">
+        </ion-avatar>
+        <ion-label>
+            <h3>{{ lista.first_name }}</h3>
+        </ion-label>
+        <!-- <ion-icon name="arrow-forward" (click)="goToDetalles(cosa)"></ion-icon> -->
+    </ion-item>
+</ion-list>
+
 </ion-content>

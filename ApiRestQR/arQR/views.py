@@ -65,16 +65,17 @@ def crea_usuario(request):
 
 # Agregamos lo siguiente que es para preparar el api local
 @csrf_exempt
-@api_view(['GET'])
+
 #aplicamos el uso de permission classes y con ello autorizar cada funcion
 #@permission_classes((IsAuthenticated,))
 #ahora creamos nuestro codigo
 #funcion lista usuario metodos GET  y POST
+@api_view(['GET'])
 def lista_usuario(request):
-    if request.method == 'GET':
-        usuario = User.objects.all()
-        serializer = User2Serializer(usuario, many=True)
-        return Response(serializer.data) 
+    
+    usuario = User.objects.all()
+    serializer = User2Serializer(usuario, many=True)
+    return Response(serializer.data) 
 
 
 #METODO ORIGINAL

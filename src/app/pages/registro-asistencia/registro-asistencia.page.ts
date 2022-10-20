@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Animation, AnimationController } from '@ionic/angular';
-import { createAnimation } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { ListarUsuariosService } from '../../services/listar-usuarios.service';
 
 @Component({
   selector: 'app-registro-asistencia',
@@ -9,10 +10,21 @@ import { createAnimation } from '@ionic/angular';
 })
 export class RegistroAsistenciaPage implements OnInit {
 
-  tituloPagina = 'Restablecer Contraseña';
+  tituloPagina = 'Registro Asistencia';
   iconoEncabezado = 'build';
 
-  constructor() {
+  listadoUsuarios: any =[this.listarUsuariosService.obtenerListadoUsuarios()];
+
+  constructor(private listarUsuariosService: ListarUsuariosService,
+    public navCtrl: NavController) { }
+
+   detalleUsuario(lista: any){
+    const navigationExtras: NavigationExtras = {
+      queryParams:{
+        estudiante: JSON.stringify(lista)
+      }
+    };
+    //this.navCtrl.navigateForward(['detalle/'],navigationExtras);
    }
 
   ngOnInit() {
