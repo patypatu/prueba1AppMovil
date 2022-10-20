@@ -30,10 +30,7 @@ def login(request):
         mensajeToken['mensaje'] = "Usuario incorrecto"
         return Response(mensajeToken,status=status.HTTP_404_NOT_FOUND)
     
-    if password == user.password:
-        pass_valido = True
-    else:
-        pass_valido = False
+    pass_valido = check_password(password, user.password)
     
     if not pass_valido:
         mensajeToken['mensaje'] = "Contraseña incorrecta"

@@ -22,23 +22,11 @@ admin.site.register(DetalleClase)
 
 #  http://127.0.0.1:8000/api/login
 #
-#{
+# SUPERUSUARIO
 #    "username": "17274762-0",
 #    "password": "movil123"
-#  }
-#
-#
-#
-#
-#
-#{
-#    "username": "17119954-9",
-#    "first_name": "Cristian",
-#    "last_name": "Gonzalez",
-#    "email": "cr.gonzalezh@duocuc.cl",
-#    "password": "crispo123",
-#    "is_staff": false
-#  }
-#
-# token = "2974db5f07c1174c5ed66ea19d8315e96fe1a34b"
-#
+#  
+# USUARIO NORMAL
+#    "username": "123456789",
+#    "password": "paty123",
+

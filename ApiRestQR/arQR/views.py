@@ -16,40 +16,51 @@ from django.contrib.auth.models import User
 #from rest_framework.authentication import TokenAuthentication
 #from rest_framework.permissions import IsAuthenticated
 
-#@api_view(['POST'])
-#def login(request):
-#    data = JSONParser().parse(request)
-# 
-#    username = data['username']
-#    password = data['password']
-#    try:
-#        user = User.objects.get(username=username)
-#    except User.DoesNotExist:
-#        return Response("El usuario no existe")
-#    pass_valido = check_password(password, user.password)
-#    if not pass_valido:
-#        return Response("Contraseña Incorrecta")
-# 
-#    token, created = Token.objects.get_or_create(user=user)
-#    return Response(token.key)
-
 
 # Agregamos lo siguiente que es para preparar el api local
 @csrf_exempt
-@api_view(['POST'])
+
 #aplicamos el uso de permission classes y con ello autorizar cada funcion
 #@permission_classes((IsAuthenticated,))
 #ahora creamos nuestro codigo
 #funcion lista usuario metodos GET  y POST
+
+@api_view(['POST'])
 def crea_usuario(request):
-    if request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = UserSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status= status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
+    
+    data = JSONParser().parse(request)
+    
+    username = data['username']
+    email = data['email']
+    password = data['password']
+
+    mensaje = {
+        'mensaje' : ''
+    }
+    
+    try:
+        User.objects.get(username = username)
+        mensaje['mensaje'] = "Usuario existe"
+
+        return Response(mensaje,status=status.HTTP_400_BAD_REQUEST)
+    except User.DoesNotExist:
+        pass
+    
+    try:
+        User.objects.create_user(username, email, password, first_name=data['first_name'],last_name=data['last_name'])
+    except User.DoesNotExist:
+        mensaje['mensaje'] = "Usuario incorrecto"
+        return Response(mensaje,status=status.HTTP_404_NOT_FOUND)
+    
+    mensaje['mensaje'] = "Usuario creado"
+    return Response(mensaje,status=status.HTTP_201_CREATED)
+
+    # serializer = UserSerializer(data=data)
+    # if serializer.is_valid():
+    #     serializer.save()
+    #     return Response(serializer.data, status= status.HTTP_201_CREATED)
+    # else:
+    #     return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
 
 
 # Agregamos lo siguiente que es para preparar el api local
