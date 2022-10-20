@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { CerrarSesionComponent } from './components/cerrar-sesion/cerrar-sesion.component';
 
 const routes: Routes = [
   {
@@ -35,7 +36,12 @@ const routes: Routes = [
    {
      path: 'registrarse',
      loadChildren: () => import('./pages/registrarse/registrarse.module').then( m => m.RegistrarsePageModule)
-   }
+   },
+   {
+    path: 'cerrar-sesion',
+    component: CerrarSesionComponent
+    //loadChildren: () => import('./components/folder.module').then( m => m.FolderPageModule)
+  }
 
 
 ];

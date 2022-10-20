@@ -10,7 +10,7 @@ export class AppComponent {
    // { title: 'Invitado', url: '/home/invitado', icon: 'home' },
    // { title: 'Restablecer Contraseña', url: '/restablecer-contra', icon: 'build' },
     { title: 'Registro Asistencia', url: '/registro-asistencia', icon: 'book' },
-    { title: 'Cerrar Sesion', url: '/inicio', icon: 'enter' },
+    { title: 'Cerrar Sesion', url: '/cerrar-sesion', icon: 'enter' },
   ];
 
   constructor() {}

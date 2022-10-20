@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot({
     swipeBackEnabled: false
-}), AppRoutingModule,  HttpClientModule], 
+}), AppRoutingModule,  HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

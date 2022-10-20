@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class LoginServiceService {
 
   urlBase= 'http://127.0.0.1:8000/';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private localStorageService: LocalStorageService) { }
 
   //POST login de usuario
   login(usuario: any, password: any): Promise <any>{
@@ -19,8 +20,7 @@ export class LoginServiceService {
       })
       .subscribe(res =>{
         console.log(res);
-        localStorage.setItem('token',res.token);   // <-- La idea es que antes de esto, se compruebe con la BD si user & pass corresponden
-        localStorage.setItem('Name',res.nombre);
+        this.localStorageService.persistirLogin(res);
         resolve(res);
       } ,(err) => {
         console.log(err);
