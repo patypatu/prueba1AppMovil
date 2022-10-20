@@ -17,4 +17,10 @@ export class LocalStorageService {
     localStorage.removeItem('Name');
     console.log('fin');
   }
+  tieneToken(){
+    if (localStorage.getItem('token')) {
+      return true;
+    }
+    return false;
+  }
 }
