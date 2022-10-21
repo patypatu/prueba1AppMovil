@@ -27,29 +27,46 @@ export class RegistrarsePage implements OnInit {
 
   async registroUsuario(){
 
-    const respResgistro = await this.registroUsuarioService.registrarUsuario(this.rut,this.nombre,
-      this.apellido,this.correo,this.pass).then(a=>true).catch(e=>false);
+    if (this.pass == this.pass2) {
 
-      if(respResgistro){
-        const alert = await this.alertController.create({
-          header: 'Usuario Creado!',
-          //subHeader: 'Important message',
-          message: 'Se ha creado correctamente su usuario',
-          buttons: ['OK'],
-        });
-        await alert.present();
-      }else{
-        const alert = await this.alertController.create({
-          header: 'Usuario ya existe!',
-          //subHeader: 'Important message',
-          message: 'El rut ya está registrado en la aplicación',
-          buttons: ['OK'],
-        });
-        await alert.present();
-      }
+      const respResgistro = await this.registroUsuarioService.registrarUsuario(this.rut,this.nombre,
+        this.apellido,this.correo,this.pass).then(a=>true).catch(e=>false);
+  
+        if(respResgistro){
+          const alert = await this.alertController.create({
+            header: 'Usuario Creado!',
+            //subHeader: 'Important message',
+            message: 'Se ha creado correctamente su usuario',
+            buttons: ['OK'],
+          });
+          await alert.present();
+        }else{
+          const alert = await this.alertController.create({
+            header: 'Usuario ya existe!',
+            //subHeader: 'Important message',
+            message: 'El rut ya está registrado en la aplicación',
+            buttons: ['OK'],
+          });
+          await alert.present();
+        }
+  
+  
+      console.log('respuesta:'+ respResgistro);
+      
 
+    }else{
 
-    console.log('respuesta:'+ respResgistro);
+      const alert = await this.alertController.create({
+        header: 'Contraseñas incorrectas!',
+        //subHeader: 'Important message',
+        message: 'Las contraseñas no coinciden',
+        buttons: ['OK'],
+      });
+      await alert.present();
+
+    }
+
+    
   }
 
 }
