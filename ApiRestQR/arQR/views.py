@@ -5,6 +5,8 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
+from django.core.mail import send_mail
+from django.conf import settings
 #importamos el modelo desde arQR y el serializer que creamos
 #from .models import User
 from .serializers import UserSerializer,User2Serializer
@@ -23,7 +25,19 @@ from django.contrib.auth.models import User
 #aplicamos el uso de permission classes y con ello autorizar cada funcion
 #@permission_classes((IsAuthenticated,))
 #ahora creamos nuestro codigo
-#funcion lista usuario metodos GET  y POST
+
+@api_view(['POST'])
+def enviar_email(request):
+    
+    mensaje = {}
+    subject = 'Thank you for registering to our site'
+    message = ' it  means a world to us '
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = ['-',]
+    send_mail( subject, message, email_from, recipient_list )
+    
+    
+    return Response(mensaje,status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
 def crea_usuario(request):
