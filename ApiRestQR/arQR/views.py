@@ -28,16 +28,34 @@ from django.contrib.auth.models import User
 
 @api_view(['POST'])
 def enviar_email(request):
+
+    data = JSONParser().parse(request)
+
+    username = data['username']
+
+    mensaje= {
+        'mensaje' : ''
+    }
+
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        mensaje['mensaje'] = "Usuario incorrecto"
+        return Response(mensaje,status=status.HTTP_404_NOT_FOUND)
     
-    mensaje = {}
-    subject = 'Thank you for registering to our site'
-    message = ' it  means a world to us '
+    correo = user.email
+    clave =  user.password
+    nombre = user.first_name
+
+    subject = 'Recuperacion de clave App Registro Asistencia'
+    message = ' Estimado ' + nombre + ' le enviamos su clave de aplicación: '+clave + ' para más información del app, vea el siguiente video https://tinyurl.com/29fbtsnc'
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = ['-',]
+    #recipient_list = ["'"+correo+"'",]
+    recipient_list = [correo,]
     send_mail( subject, message, email_from, recipient_list )
     
-    
-    return Response(mensaje,status=status.HTTP_201_CREATED)
+    mensaje['mensaje'] = "Correo enviado"
+    return Response(mensaje,status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 def crea_usuario(request):
