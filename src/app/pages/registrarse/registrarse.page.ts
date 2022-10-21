@@ -27,11 +27,12 @@ export class RegistrarsePage implements OnInit {
 
   async registroUsuario(){
 
+    // eslint-disable-next-line eqeqeq
     if (this.pass == this.pass2) {
 
       const respResgistro = await this.registroUsuarioService.registrarUsuario(this.rut,this.nombre,
         this.apellido,this.correo,this.pass).then(a=>true).catch(e=>false);
-  
+
         if(respResgistro){
           const alert = await this.alertController.create({
             header: 'Usuario Creado!',
@@ -49,10 +50,9 @@ export class RegistrarsePage implements OnInit {
           });
           await alert.present();
         }
-  
-  
+
       console.log('respuesta:'+ respResgistro);
-      
+
 
     }else{
 
@@ -66,7 +66,7 @@ export class RegistrarsePage implements OnInit {
 
     }
 
-    
+
   }
 
 }
