@@ -51,7 +51,7 @@ def enviar_email(request):
     user.set_password(clave)
     user.save()
 
-    subject = 'Recuperacion de clave App Registro Asistencia'
+    subject = 'Recuperacion de clave RegistrAPP'
     message = ' Estimado ' + nombre + ' le enviamos su clave de aplicación: '+clave + ' para más información del app, vea el siguiente video https://tinyurl.com/29fbtsnc'
     email_from = settings.EMAIL_HOST_USER
     #recipient_list = ["'"+correo+"'",]
