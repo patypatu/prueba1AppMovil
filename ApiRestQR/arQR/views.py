@@ -7,6 +7,8 @@ from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
 from django.conf import settings
+import random
+import string
 #importamos el modelo desde arQR y el serializer que creamos
 #from .models import User
 from .serializers import UserSerializer,User2Serializer
@@ -44,8 +46,10 @@ def enviar_email(request):
         return Response(mensaje,status=status.HTTP_404_NOT_FOUND)
     
     correo = user.email
-    clave =  user.password
+    clave =  get_random_string(8)
     nombre = user.first_name
+    user.set_password(clave)
+    user.save()
 
     subject = 'Recuperacion de clave App Registro Asistencia'
     message = ' Estimado ' + nombre + ' le enviamos su clave de aplicación: '+clave + ' para más información del app, vea el siguiente video https://tinyurl.com/29fbtsnc'
@@ -56,6 +60,7 @@ def enviar_email(request):
     
     mensaje['mensaje'] = "Correo enviado"
     return Response(mensaje,status=status.HTTP_200_OK)
+
 
 @api_view(['POST'])
 def crea_usuario(request):
@@ -151,32 +156,8 @@ def detalle_usuario(request, id):
         serializer = User2Serializer(v_usuario)
         return Response(serializer.data)
 
-#METODO ORIGINAL
-#indicamos el apiview, de GET, PUT y DELETE
-#@api_view(['GET', 'PUT', 'DELETE'])
-#aplicamos el uso de permission classes y con ello autorizar cada funcion
-#@permission_classes((IsAuthenticated,))
-#funcion detalle usuario  metodos GET, PUT y DELETE
-#def detalle_usuario(request, id):
-#    try:
-        #en este bloque try,  el id será el username de user, el cual sera rut
-        # el cual lo busca en la base de datos, si existe lo asignaremos
-        #a la variable v_usuario
-#        v_usuario = User.objects.get(username=id)
-#    except User.DoesNotExist:
-        #si no existe, devolveremos un 404
-#        return Response(status=status.HTTP_404_NOT_FOUND)
-#    if request.method == 'GET':
-#        serializer = UserSerializer(v_usuario)
-#        return Response(serializer.data)
-#    if request.method == 'PUT':
-#        data = JSONParser().parse(request)
-#        serializer = UserSerializer(v_usuario, data=data)
-#        if serializer.is_valid():
-#            serializer.save()
-#            return Response(serializer.data)
-#        else:
-#            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#    elif request.method == 'DELETE':
-#        v_usuario.delete()
-#        return Response(status=status.HTTP_204_NO_CONTENT)
+
+def get_random_string(length):
+    # choose from all lowercase letter
+    letters = string.ascii_letters + string.digits
+    return ''.join(random.choice(letters) for i in range(length))

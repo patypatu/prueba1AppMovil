@@ -30,14 +30,24 @@ export class RegistrarsePage implements OnInit {
     const respResgistro = await this.registroUsuarioService.registrarUsuario(this.rut,this.nombre,
       this.apellido,this.correo,this.pass).then(a=>true).catch(e=>false);
 
-      const alert = await this.alertController.create({
-        header: 'Usuario Creado!',
-        //subHeader: 'Important message',
-        message: 'Se ha creado correctamente su usuario',
-        buttons: ['OK'],
-      });
+      if(respResgistro){
+        const alert = await this.alertController.create({
+          header: 'Usuario Creado!',
+          //subHeader: 'Important message',
+          message: 'Se ha creado correctamente su usuario',
+          buttons: ['OK'],
+        });
+        await alert.present();
+      }else{
+        const alert = await this.alertController.create({
+          header: 'Usuario ya existe!',
+          //subHeader: 'Important message',
+          message: 'El rut ya está registrado en la aplicación',
+          buttons: ['OK'],
+        });
+        await alert.present();
+      }
 
-      await alert.present();
 
     console.log('respuesta:'+ respResgistro);
   }
